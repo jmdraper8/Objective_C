@@ -15,7 +15,7 @@
 - (void) print;
 - (void) add: (Fraction *)f;
 - (void) reduce;
-
+- (void) setTo: (int) n over: (int) d;
 
 @end
 
@@ -32,6 +32,7 @@
  
     numerator = numerator * f.numerator + denominator * f.numerator;
     denominator = denominator * f.denominator;
+    [self reduce];
 }
 
 - (void) reduce {
@@ -50,22 +51,31 @@
     denominator /= u;
 }
 
+- (void) setTo:(int)n over: (int)d {
+    
+    numerator = n;
+    denominator =d;
+}
+
 @end
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
-        Fraction *myFraction;
-        myFraction = [[Fraction alloc] init];
+        Fraction *myFraction1;
+        Fraction *myFraction2;
+        myFraction1 = [[Fraction alloc] init];
+        myFraction2 = [[Fraction alloc] init];
         
         
-        [myFraction setNumerator:10];
-        [myFraction setDenominator:22];
+        [myFraction1 setTo:2 over:4];
+        [myFraction2 setTo:2 over:5];
         
         // insert code here...
         NSLog(@"Hello, World!");
         
-        [myFraction print];
+        [myFraction1 add:myFraction2];
+        [myFraction1 print];
         
         
         
